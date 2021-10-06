@@ -7,4 +7,5 @@
 *.png
 *.pdf
 *.html
-
+.DS_Store
+*.RData

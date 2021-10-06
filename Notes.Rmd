@@ -1,0 +1,24 @@
+---
+title: "Notes"
+author: "Juan Rocha"
+date: "10/5/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The folder `data` contains all the searches made in Scopus as `csv` files. Scopus only allows to download full metadata, including abstracts, if the search results are <=2000. For larger searchers fewer fields are returned.
+
+The two main searchers were:
+
+- regime shifts
+- "( TITLE-ABS-KEY ( "ecosystem servic*"  OR  "nature contributions to people" ) )"
+
+Then I refined the ecosystem service string by adding each category coded in the regime shift database for impacts on ecosystem services and human wellbeing.
+
+Most searchers were done in June 2021, and in early October I realized there were some corrupted files (with no data) that were re-downloaded. Corrupted files were deleted (zero bytes).
+
+There is 46k abstracts to retrieve, and 7k already in memory. If the rate is 10k / week, I need a month. But if the response is 1/s, I'll need ~3hrs to download 10k within their limits.
+
