@@ -16,12 +16,20 @@ The two main searchers were:
 - regime shifts: "TITLE-ABS-KEY ( "regime shift*"  OR  "critical transition*"  OR  "phase transition*"  OR  "hysteresis"  OR  "tipping point*"  OR  "threshold*"  AND  "ecosystem*" ) "
 - ecosystem services"( TITLE-ABS-KEY ( "ecosystem servic*"  OR  "nature contributions to people" ) )"
 
-Then I refined the ecosystem service string by adding each category coded in the regime shift database for impacts on ecosystem services and human wellbeing.
+Then I refined the ecosystem service string by adding each category coded in the regime shift database for impacts on ecosystem services and human wellbeing. The file `search_book.numbers` contain the search strings and hits of all searches performed, useful as SM on the paper.
 
 Most searchers were done in June 2021, and in early October I realized there were some corrupted files (with no data) that were re-downloaded. Corrupted files were deleted (zero bytes).
 
 There is 46k abstracts to retrieve, and 7k already in memory. If the rate is 10k / week, I need a month. But if the response is 1/s, I'll need ~3hrs to download 10k within their limits.
 
-J220629: dtm was done on ES files, the RS generic file, but not on the RS_specific files. Check the overlap, otherwise need to think on strategies. Do it again, or?
+J220629: dtm was done on ES files, the RS generic file, but not on the RS_specific files. Update: Analysis has been redone with all papers (ES and RS abstracts + generic searches). Tags were missing but now corrected for all categories. Results completed until steps 06: matching and retrieving human annotations.
 
-Options for matching: if the tm is fit on all papers, extract the dominant topics for papers that are on specific ES by looking at higher than random probabilities. Then see if any of these topic numbers appear higher than random on RS_specific papers. Option 2 is to run the tm only on ES papers, then do a posterior fitting on RS papers and look for characteristic topic profiles.
+**Options for matching:** if the tm is fit on all papers, extract the dominant topics for papers that are on specific ES by looking at higher than random probabilities. Then see if any of these topic numbers appear higher than random on RS_specific papers. Option 2 is to run the tm only on ES papers, then do a posterior fitting on RS papers and look for characteristic topic profiles. For now all the analysis was done with Option 1.
+
+### Next steps:
+
+1. Retrieve a similar object to `df_match` but instead of the number of topics matched, report the percentage of papers where tau was significantly higher (say 3tau). With the proportion of papers one can quantify uncertainty or consensus through the available literature.
+
+2. Explore matrices for the results. One option is humans vs machine. Another is one matrix with color coded: only detected by human, only detected by machine, both. Should one use accuracy (AUC) or something like that in the paper? 
+
+3. Explore classifying a new corpus with the fitted model. That is when things get interesting. A proof of concept.
