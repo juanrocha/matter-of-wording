@@ -38,7 +38,8 @@ purrr::map_chr(z, function(x){ x$content$`abstracts-retrieval-response`$item$bib
 
 #### Compile all data and extract paper ids for recovering abstracts ####
 
-fls <- dir_ls(path = "data/")
+fls <- dir_ls(path = "data/") |> 
+    str_subset( ".csv")
 
 dat <- map(
     fls,
@@ -49,7 +50,7 @@ dat <- map(
 
 abst <- dat |> map(ncol) > 19 # data frames with 19 columns do not have abstracts
 
-tags <- names(dat[abst]) |> 
+tags <- fls[abst] |> 
     str_remove(pattern = "data/") |> 
     str_remove_all(pattern = "[:digit:]") |> 
     str_remove("_") |> # only the first one
@@ -65,7 +66,7 @@ df_abs <- dat[abst] |>
 df_abs |> nest(tags = tag) # 7346 unique abstracts
 
 
-tags_no <- names(dat[!abst]) |> 
+tags_no <- fls[!abst] |> 
     str_remove(pattern = "data/") |> 
     str_remove_all(pattern = "[:digit:]") |> 
     str_remove("_") |> # only the first one
@@ -80,5 +81,5 @@ df_lack <- dat[!abst] |>
 
 df_lack <- df_lack |> nest(tags = tag) # 46374 unique papers without abstracts
 
-save(df_lack, file = "data/missing_abstracts.RData")
-
+# save(df_lack, file = "data/missing_abstracts.RData") # abstracts that need retriving from API -> 02-retrieve_abstracts.R
+# save(df_abs, file = "data/abstracts_scopus.RData") # abstracts that came directly from Scopus 

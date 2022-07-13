@@ -13,8 +13,8 @@ The folder `data` contains all the searches made in Scopus as `csv` files. Scopu
 
 The two main searchers were:
 
-- regime shifts
-- "( TITLE-ABS-KEY ( "ecosystem servic*"  OR  "nature contributions to people" ) )"
+- regime shifts: "TITLE-ABS-KEY ( "regime shift*"  OR  "critical transition*"  OR  "phase transition*"  OR  "hysteresis"  OR  "tipping point*"  OR  "threshold*"  AND  "ecosystem*" ) "
+- ecosystem services"( TITLE-ABS-KEY ( "ecosystem servic*"  OR  "nature contributions to people" ) )"
 
 Then I refined the ecosystem service string by adding each category coded in the regime shift database for impacts on ecosystem services and human wellbeing.
 
@@ -22,3 +22,6 @@ Most searchers were done in June 2021, and in early October I realized there wer
 
 There is 46k abstracts to retrieve, and 7k already in memory. If the rate is 10k / week, I need a month. But if the response is 1/s, I'll need ~3hrs to download 10k within their limits.
 
+J220629: dtm was done on ES files, the RS generic file, but not on the RS_specific files. Check the overlap, otherwise need to think on strategies. Do it again, or?
+
+Options for matching: if the tm is fit on all papers, extract the dominant topics for papers that are on specific ES by looking at higher than random probabilities. Then see if any of these topic numbers appear higher than random on RS_specific papers. Option 2 is to run the tm only on ES papers, then do a posterior fitting on RS papers and look for characteristic topic profiles.

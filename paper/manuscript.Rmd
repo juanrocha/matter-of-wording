@@ -1,0 +1,88 @@
+---
+title: "Using language to detect regime shift's impacts on ecosystem services"
+author: |
+  | \small \textbf{Juan C. Rocha}
+  | \small Stockholm Resilience Centre
+  | \small Stockholm University
+  | \small \texttt{\href{mailto:juan.rocha@su.se}{\nolinkurl{juan.rocha@su.se}}}
+abstract: |
+  Ecosystems services are the benefits people get from nature. Their flow and provision is expected to be affected
+
+
+output:
+  pdf_document:
+    dev: pdf
+    keep_tex: yes
+    toc: no
+    latex_engine: xelatex
+  rtf_document:
+    toc: no
+
+csl: /Users/juanrocha/Documents/styles/science.csl
+bibliography: bibliography.bib
+citecolor: blue
+documentclass: article
+font: Arial
+fontsize: 10pt
+keywords:
+- cooperation
+- thresholds
+- risk
+- uncertainty
+- regime shifts
+linkcolor: blue
+urlcolor: blue
+header-includes:
+- \usepackage{dcolumn, rotating, longtable, lineno, float, array, tabularx, inputenc}
+- \setmainfont{Arial}
+- \linenumbers
+- \renewcommand{\abstractname}{}
+- \graphicspath{{figures/}}
+- \usepackage[margin=2.5cm]{geometry}
+---
+
+Topic models can detect impacts on ecosystem services and human wellbeing
+
+## Introduction
+
+486/1000w
+
+Regime shifts are large, abrupt and persistent changes in the function and structure of ecosystems []. Examples include coral transitions, lake eutrophication, coastal hypoxia, the collapse of fisheries, steppe to tundra, or shifts from forest to savannahs. Despite the variety of spatial and temporal scales that these phenomena span, all of them occur when tipping points are transgressed, and can potentially effect the flow of ecosystem services on which societies depend upon. These impacts range from decreasing food production, protection from coastal erosion and natural hazards, threating livelihoods, to the reduction of carbon sequestration and thus climate regulation. In short, regime shifts can impact provisioning, regulating and cultural nature contributions to people and their wellbeing [].
+
+Empirical research on regime shift has been biased towards relatively richer areas of the world, in the Northern hemisphere where long term observation networks and research infrastructure has enabled their documentation []. Over 30 different types of regime shifts have been documented in the literature [], while different databases have collected over 1500 case studies []. Meta-analyses based on published literature and long term observation networks are however prone to geographic and record bias. Regime shifts that occur at faster temporal scales and more constraint spatial ones tend to be more studied []. This bias has left open a research gap of under representation of places in the global south, and shifts that required long term observations to be detected.
+
+Take as an example Colombia, a country within the top most biodiverse countries in the planet []. A major global assessment of hypoxia --a regime shift caused by low levels of dissolved oxygen in water that often causes fish die-off events-- did not report any cases in Colombia by 2008 [@Diaz:2008p199], and an update in 2018 includes only one case reported [@Breitburg:2018iz]. Yet a simple search on a Colombian news outlet (www.caracol.com.co) by "_mortandad de peces_" or fish die-offs in Spanish, render over 50 results scattered around the country. While these and other symptoms of ecological regime shifts do not make it to the scientific literature, at least in some cases they make it to the newspapers.
+
+Because regime shifts potentially effect nature contributions to people and their wellbeing, it is possible that people record their symptoms in other forms than scientific papers. Detection of these signals, however, require the development of methods sensitive to unstructured data such as textual narratives. Machine learning methods are a promising avenue to track Earth system changes at scale [], helping solve the geographic and record bias in current research. These methods however require large amounts of data for training and assess predictive accuracy. Undertanding uder which conditions such methods are useful, their data requirements and potential shortcommings, are open areas of research.
+
+This paper aims at detecting regime shifts impacts on ecosystem services based on topic models -- a machine learning method for text data. Its central question is: can human narratives be used as early warnings of regime shift symptoms and their potential impacts on nature contributions to people? If plausible, this method could be used to complement monitoring programs where research infrastructure and resources for ecological data collection are limited. The idea however needs testing with a rigorous comparison against ground truth before deployment in the field.
+
+## Method
+
+800w
+
+To answer these questions I fited topic models to scientific literature on ecosystem services and triangulate the results against literature on regime shifts.
+
+**Topic models:** are probabilistic unsupervise machine learning methods that reduces the dimensionality of text data into latent variables or topics []. The model fits two posterior probability distributions: $\beta$ is the probability of a word belonging to a topic, and $\gamma$ is the probability of a topic explaining a document. Thus it learns for any given document what is the ranking of words that best explain its contents compared to all other documents in a collection or corpus. The most common algorithm to fit topic models is Latent Dirichlet Allocation (LDA) which assign probabilities to latent variables based on the distribution of words assuming a mutivariate continuous Dirichlet distribution []. Different computational approaches to LDA implementations exist, including correlated topic models (CTM), variational expectation maximization (VEM), and Gibbs sampling (Gibbs) algorithms [].
+
+The performance of these models can be assessed by standard statistical sensitivity analyses that compare the maximum likelihood, entropy, and perplexity of these models []. In the context of topic models, entropy measures how evenly is the distribution of topics, while perplexity measures the uncertainty of predicting words. Thus an ideal model should maximize the log-likelihood and entropy while minimizing perplexity []. The VEM algorithm has an additional hyperparameter $\alpha$ that can be used to inform the eveness of topic distribution. A low $\alpha$ indicates that the documents can be described by few topics. Together, these performance metrics can be used to select the optimal number of topics to fit, or the best suited algorithm implementation to the data [].
+
+**Datasets:** The regime shifts database [] was used for assessing model accuracy against human coded categories of regime shift impacts on ecosystem services. The database was designed in 2009 and its first comparative analyses revealed the main drivers of regime shifts globally as well as most common impacts on ecosystem services []. It uses the classification of ecosystem services from the Millenium Ecosystem Assessment [], which group them into provisioning, regulating, supporting, and cultural services. The database has synthesised academic literature and documented over 30 different types of regime shifts and over 1500 case studies []. For each regime shift type it provides a narrative overview of their main drivers, impacts and management options; and it captures in categorical variables their drivers, impacts on ecosystem services and human wellbeing, scales at which the regime shift occur, evidence type, reversibility and uncertainty. Over 60 researcher have contributed to the database since 2009. These human readers have assessed scientific literature and using the same predefined categories to record impacts on ecosystem services and human wellbeing. The human-annotated data is used to test the efficiency of topic models in detecting regime shift impacts.
+
+The Scopus search engine was used to obtain relevant scientific literature on ecosystem services and regime shifts.
+
+**Assessing accuracy**
+
+## Results
+
+1200w
+
+## Discussion
+
+700
+
+## Conclusion
+
+300
+
+## References
